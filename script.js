@@ -7,21 +7,22 @@ var uppercaseArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var numbersArray = '1234567890'.split('');
 var specialCharsArray = '!@#$%^&*()_+'.split('');
 
-// 
-function generatePassword() {
-var userChoice = window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
-var passLength = parseInt(userChoice);
-if (!passLength) {
-  return;
-}
-else if (passLength < 8 || passLength > 128 || isNaN(passLength)) {
-  window.alert("Must be a digit between 8 and 128 characters");
-  return window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
-}
- else {
-      alert("You must select at least one of the character types from the following 4 prompts \n(lowercase, uppercase, number, special character)");
-      }
 
+function generatePassword() {
+while (true) {
+  var userChoice = window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
+var passLength = parseInt(userChoice);
+  if (userChoice === null) {
+    return
+  }
+if (isNaN(passLength)) {
+  window.alert("Must be a number");
+}
+else if (passLength < 8 || passLength > 128) {
+  window.alert("Must be between 8 and 128 characters");
+}
+else {break}
+}
 
 var passLowercase = window.confirm("Click OK to include lowercase characters"); 
 var passUppercase = window.confirm("Click OK to include uppercase characters");

@@ -1,40 +1,15 @@
-var characterLength = 8;
-var choiceArr = [];
-
-var specialCharArr = ['!', '@', '#', '$'];
-var lowerCaseArr = [];
-var upperCaseArr = [];
-var numberArr = [];
-
-
-
-
-
-function writePassword() {
- var truePrompts = getPrompts();
- if(truePrompts) {
-  
-  var password2 = generatePassword();
-  var passwordText = document.querySelector("#password");=
-
-  passwordText.value = password2;
- }
+while (true) {
+  var passLength = parseInt(userChoice);
+if (isNaN(passLength)) {
+  window.alert("Must be a number");
+  return window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
 }
-
-
-function getPrompts() {
-  characterLength = parseInt(prompt("How many characters do you want"));
-
-
-  confirm("Would you like lowercase letters in your password?")
+else if (!passLength) {
+  return;
 }
-choiceArr = choiceArr.concat(upperCaseArr);
-
-function generatePassword() {
-  var password = "";
-  for (var i = 0; i < passLength; i++) {
-    var index = Math.floor(Math.random() * choiceArr.length);
-    password = password + choiceArr[index];
+else if (passLength < 8 || passLength > 128) {
+  window.alert("Must be between 8 and 128 characters");
+  return window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
 }
-return password;
+else {break}
 }
