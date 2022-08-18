@@ -8,11 +8,13 @@ var specialChars = ["!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "="]
 
 // Write password to the #password input
 function askPrompts() {
-  var passLength = parseInt(prompt("Choose the number of characters for your password \n(Must be between 8 and 128)"));
+  choiceArr = [];
+
+  var passLength = (prompt("Choose the number of characters for your password \n(Must be between 8 and 128)"));
   if (!passLength) {
     return;
   }
-  if (passLength<8 || passLength>128 || isNaN) {
+  if (passLength<8 || passLength>128) {
     alert("Must be between 8 and 128 characters");
     writePassword();
   }
@@ -62,7 +64,7 @@ function writePassword () {
   var truePrompts = askPrompts();
   var passwordText = document.querySelector("#password");
 
-  if(truePrompts) {
+  if (truePrompts) {
     var password2 = generatePassword();
     passwordText.value = password2;}
     else {
@@ -70,11 +72,6 @@ function writePassword () {
     }
 
 }
-
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
   var password = "";
@@ -84,3 +81,9 @@ function generatePassword() {
 }
 return password;
 }
+
+
+
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
