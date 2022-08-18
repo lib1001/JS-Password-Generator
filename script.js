@@ -1,39 +1,33 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowercaseArray = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-var uppercaseArray = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
-var numbersArray = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
-var specialCharsArray = ["!", "@", "#", "$", "%", "^", "&", "*", "_", "-", "+", "="];
 
+// declaring variables that include all of the possible characters, declared into appropriate variable.
+var lowercaseArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
+var uppercaseArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+var numbersArray = '1234567890'.split('');
+var specialCharsArray = '!@#$%^&*()_+'.split('');
 
-
+// 
 function generatePassword() {
-
 var userChoice = window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
-
 var passLength = parseInt(userChoice);
-
-// try to combine these 2 if statements maybe
-if (isNaN(passLength)) {
-  window.alert("Must be a digit");
-  return 
-}
-if (passLength < 8 || passLength > 128) {
-  window.alert("Must be between 8 and 128 characters");
+if (!passLength) {
   return;
 }
+else if (passLength < 8 || passLength > 128 || isNaN(passLength)) {
+  window.alert("Must be a digit between 8 and 128 characters");
+  return window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
+}
+ else {
+      alert("You must select at least one of the character types from the following 4 prompts \n(lowercase, uppercase, number, special character)");
+      }
 
-// if (!passLength) {
-//     return;
-//   } didn't work, showed nan alert
 
 var passLowercase = window.confirm("Click OK to include lowercase characters"); 
 var passUppercase = window.confirm("Click OK to include uppercase characters");
 var passNumbers = window.confirm("Click OK to include numbers");
 var passSpecialChars = window.confirm("Click OK to include special characters");
-
 var userSelections = []
-
 
 if (passLowercase) {
   userSelections.push(lowercaseArray)
@@ -50,16 +44,18 @@ if (passSpecialChars) {
   userSelections.push(specialCharsArray)
 }
 
+// defaults password to lowercase if no character types are selected
 if (userSelections.length === 0) {
   userSelections.push(lowercaseArray);
 }
 
+console.log(passLength);
+console.log(passLowercase);
+console.log(passUppercase);
+console.log(passNumbers);
+console.log(passSpecialChars);
 
-console.log(userSelections);
-console.log(randomChar);
-console.log(newPassword);
 
-// see if i need this here or can change the random under loop
 function randomInt(min, max) {
 if (!max) {
   max = min;
