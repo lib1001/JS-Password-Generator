@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// declaring variables that include all of the possible characters, declared into appropriate variable.
+// declaring variables that include all of the possible characters, sorted into appropriate variable.
 var lowercaseArray = 'abcdefghijklmnopqrstuvwxyz'.split('');
 var uppercaseArray = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 var numbersArray = '1234567890'.split('');
@@ -11,17 +11,19 @@ var specialCharsArray = '!@#$%^&*()_+'.split('');
 function generatePassword() {
 while (true) {
   var userChoice = window.prompt("Choose the number of characters for your password \n(Must be between 8 and 128)");
-var passLength = parseInt(userChoice);
-  if (userChoice === null) {
+  var passLength = parseInt(userChoice);
+  if (!userChoice) {
     return
   }
-if (isNaN(passLength)) {
+  if (isNaN(passLength)) {
   window.alert("Must be a number");
-}
-else if (passLength < 8 || passLength > 128) {
+  }
+  else if (passLength < 8 || passLength > 128) {
   window.alert("Must be between 8 and 128 characters");
-}
-else {break}
+  }
+  else {
+    break
+  }
 }
 
 var passLowercase = window.confirm("Click OK to include lowercase characters"); 
@@ -46,7 +48,7 @@ if (passSpecialChars) {
 }
 
 // defaults password to lowercase if no character types are selected
-if (userSelections.length === 0) {
+if (!userSelections.length) {
   userSelections.push(lowercaseArray);
 }
 
@@ -56,7 +58,7 @@ console.log(passUppercase);
 console.log(passNumbers);
 console.log(passSpecialChars);
 
-
+//made sense last night but dont remember why
 function randomInt(min, max) {
 if (!max) {
   max = min;
@@ -75,7 +77,7 @@ function randomItem(list) {
  for (var i = 0; i < passLength; i++) {
  var randomArray = randomItem(userSelections);
  var randomChar = randomItem(randomArray);
-newPassword += randomChar;
+  newPassword += randomChar;
 }
 
   return newPassword
